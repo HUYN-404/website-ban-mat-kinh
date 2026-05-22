@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.venv/
+**/.venv/
+venv/
+**/venv/
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+dist-ssr/
+*.tsbuildinfo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Logs and runtime files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+tempCodeRunnerFile.*
+
+# Runtime uploads. Move seed/demo assets to a committed fixtures folder if needed.
+uploads/
+
+# Local databases and archives
+*.sqlite
+*.sqlite3
+*.db
+*.zip
+*.rar
+*.7z

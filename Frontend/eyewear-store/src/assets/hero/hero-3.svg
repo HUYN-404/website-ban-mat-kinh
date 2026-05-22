@@ -1,0 +1,41 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#f5f2ec" />
+  <g filter="url(#blur)">
+    <circle cx="360" cy="420" r="300" fill="url(#paint0_linear)" fill-opacity="0.5" />
+    <ellipse cx="960" cy="500" rx="320" ry="280" fill="url(#paint1_linear)" fill-opacity="0.55" />
+    <circle cx="700" cy="340" r="220" fill="url(#paint2_linear)" fill-opacity="0.45" />
+  </g>
+  <path
+    d="M420 460c22-52 68-82 120-78 48 4 86 34 114 74 34 48 90 94 160 100 58 5 108-19 138-65"
+    stroke="#1e1e1e"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.16"
+  />
+  <path
+    d="M430 492c18-42 58-68 102-64 40 3 72 30 98 62 30 36 76 70 134 76 48 5 90-12 116-46"
+    stroke="#2c2c2c"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity="0.18"
+  />
+  <defs>
+    <filter id="blur" x="-220" y="-220" width="1840" height="1440" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="150" />
+    </filter>
+    <linearGradient id="paint0_linear" x1="140" y1="180" x2="520" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f1ddc4" />
+      <stop offset="1" stop-color="#d5b483" />
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="760" y1="240" x2="1160" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e7dcc8" />
+      <stop offset="1" stop-color="#c3a578" />
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="560" y1="180" x2="840" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d4bd97" />
+      <stop offset="1" stop-color="#af8a57" />
+    </linearGradient>
+  </defs>
+</svg>
+
+

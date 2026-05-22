@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    image: nginx:1.27-alpine
+    container_name: eyewear-api-gateway
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx.strangler.conf:/etc/nginx/nginx.conf:ro
