@@ -1,6 +1,9 @@
 # Ép dùng LF cho file text — tránh xung đột xuống dòng giữa Windows/Linux
 * text=auto eol=lf
 
+# File .bat của Windows phải giữ CRLF (cmd.exe xử lý LF không đáng tin)
+*.bat text eol=crlf
+
 # File nhị phân (git không diff/merge theo dòng)
 *.mwb binary
 *.avif binary

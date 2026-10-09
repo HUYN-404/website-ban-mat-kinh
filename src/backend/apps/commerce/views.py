@@ -25,6 +25,7 @@ from apps.coupons.services import (
 from .invoice import build_invoice_pdf
 from .services import (
     ORDER_STATUSES,
+    PAYMENT_STATUS_PENDING,
     STATUS_CANCELLED,
     STATUS_COMPLETED,
     STATUS_LABELS,
@@ -538,7 +539,14 @@ def order_payment(request, order_id: int):
     denied = _own_order_or_403(request, order)
     if denied:
         return denied
-    order.payment_id = request.data.get("paymentId")
+    # Chỉ cho gắn giao dịch THUỘC ĐÚNG đơn này (chặn trỏ sang giao dịch của người khác)
+    payment_id = request.data.get("paymentId")
+    if payment_id is not None:
+        belongs = Payment.objects.filter(payment_id=payment_id, order_id=order.order_id).exists()
+        if not belongs:
+            return error("Giao dịch không thuộc đơn hàng này.", status=400)
+
+    order.payment_id = payment_id
     order.save(update_fields=["payment_id"])
     # Gắn giao dịch vào đơn đã thanh toán → giao dịch đó cũng phải là `completed`
     sync_payment_status_for_order(order)
@@ -585,10 +593,11 @@ def order_item_detail(request, order_id: int, order_item_id: int):
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def payments(request):
-    denied = require_admin(request.user, request)
-    if denied:
-        return denied
     if request.method == "GET":
+        # GET: CHỈ admin — đối soát toàn bộ giao dịch ở trang Thanh toán
+        denied = require_admin(request.user, request)
+        if denied:
+            return denied
         queryset = Payment.objects.all().order_by("-payment_id")
         # Lọc theo ngày giao dịch (`payments.payment_date`) — admin chọn khoảng ngày ở trang Thanh toán
         try:
@@ -600,10 +609,25 @@ def payments(request):
         except ValueError:
             return error("Ngày lọc không hợp lệ — cần định dạng YYYY-MM-DD.", status=400)
         return envelope(PaymentSerializer(queryset, many=True).data)
-    serializer = PaymentSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return envelope(serializer.data, status=201)
+
+    # POST: KHÁCH tạo giao dịch cho ĐƠN CỦA CHÍNH MÌNH (bước đặt hàng ở storefront).
+    # ⚠ Không dùng require_admin ở đây — nếu không, cả COD lẫn chuyển khoản đều bị 403.
+    # Số tiền LUÔN lấy từ DB (`order.total_amount`), không tin `amount` do FE gửi lên.
+    order_id = request.data.get("orderId")
+    order = Order.objects.filter(order_id=order_id).first() if order_id else None
+    if not order:
+        return error("Không tìm thấy đơn hàng để tạo giao dịch.", status=404)
+    denied = _own_order_or_403(request, order)
+    if denied:
+        return denied
+
+    payment = Payment.objects.create(
+        order_id=order.order_id,
+        payment_method=str(request.data.get("method") or "bank_transfer"),
+        payment_status=PAYMENT_STATUS_PENDING,
+        amount=order.total_amount,
+    )
+    return envelope(PaymentSerializer(payment).data, status=201)
 
 
 @api_view(["GET", "PUT"])

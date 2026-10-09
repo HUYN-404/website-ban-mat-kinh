@@ -11,10 +11,12 @@ import './styles.css'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // Dữ liệu "tươi" 60s → đi lại giữa các trang KHÔNG gọi lại API liên tục
-      staleTime: 60_000,
+      // 15s: đủ ngắn để dữ liệu (đơn hàng/giao dịch mới) sớm xuất hiện,
+      // nhưng vẫn không gọi lại API liên tục khi đi qua lại giữa các trang admin.
+      staleTime: 15_000,
       gcTime: 5 * 60_000,
-      refetchOnWindowFocus: false,
+      // Quay lại tab admin (sau khi đặt hàng ở storefront) → tự tải lại dữ liệu mới.
+      refetchOnWindowFocus: true,
       retry: 1,
     },
   },

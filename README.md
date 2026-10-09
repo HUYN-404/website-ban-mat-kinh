@@ -14,7 +14,7 @@ Hệ thống thương mại điện tử bán kính mắt gồm 3 khối chính:
 | Trang quản trị | React 18 · Vite 5 · React Router 6 · TanStack Query |
 | Thanh toán | VNPay sandbox (HMAC-SHA512) · COD |
 | Tài liệu API | drf-spectacular (Swagger + ReDoc) |
-| Kiểm thử | pytest (70 test case) |
+| Kiểm thử | pytest (81 test case) |
 
 ## Cấu trúc thư mục
 
@@ -26,11 +26,6 @@ Hệ thống thương mại điện tử bán kính mắt gồm 3 khối chính:
 │   ├── admin/                ← Trang quản trị (React 18)
 │   ├── uploads/              ← Ảnh/media người dùng tải lên
 │   └── product_img/          ← Ảnh sản phẩm theo thương hiệu
-├── docs/                     ← Tài liệu
-│   ├── database/             ← Script MySQL + tài liệu CSDL
-│   ├── diagrams/             ← Biểu đồ UML (PlantUML)
-│   ├── thesis/               ← Đồ án + nội dung thay thế
-│   └── *.md                  ← AGENTS, kiến trúc, công nghệ, lộ trình…
 ├── runserver.bat             ← Script chạy nhanh backend
 ├── .gitignore
 └── README.md

@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FiMinus, FiPlus, FiTrash2, FiShoppingBag, FiTag } from 'react-icons/fi'
@@ -18,6 +19,7 @@ import OrderSuccessModal from '../components/OrderSuccessModal'
 const CartPage = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const { items, isLoading, total, itemCount, updateQuantity, removeItem, refreshCart } = useCartContext()
   const { error } = useToast()
   const [deleteItemId, setDeleteItemId] = useState<number | null>(null)
@@ -366,6 +368,10 @@ const CartPage = () => {
 
             // Xóa giỏ hàng sau khi đặt hàng thành công
             await refreshCart()
+
+            // Đơn vừa tạo → xoá cache danh sách đơn để trang "Đơn hàng của tôi"
+            // hiện đơn mới NGAY. Không có dòng này, staleTime 5 phút sẽ che mất đơn vừa đặt.
+            queryClient.invalidateQueries({ queryKey: ['user-orders'] })
 
             // Đóng checkout modal
             setIsCheckoutOpen(false)
