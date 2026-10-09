@@ -1,0 +1,43 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#f9f6f1" />
+  <g filter="url(#blur)">
+    <circle cx="380" cy="320" r="260" fill="url(#paint0_linear)" fill-opacity="0.6" />
+    <circle cx="980" cy="520" r="320" fill="url(#paint1_linear)" fill-opacity="0.55" />
+    <circle cx="620" cy="620" r="220" fill="url(#paint2_linear)" fill-opacity="0.5" />
+  </g>
+  <path
+    d="M438 330c22-78 85-120 160-104 68 15 112 74 132 140 18 56 48 116 114 137 58 19 119-12 144-69"
+    stroke="#272727"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.16"
+  />
+  <path
+    d="M438 360c28-60 94-92 160-80 60 11 102 52 126 104 26 56 68 112 138 120 56 7 108-20 136-72"
+    stroke="#353535"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.18"
+  />
+  <defs>
+    <filter id="blur" x="-180" y="-180" width="1760" height="1480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="140" />
+    </filter>
+    <linearGradient id="paint0_linear" x1="220" y1="100" x2="540" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f3d7b0" />
+      <stop offset="1" stop-color="#e5c08a" />
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="740" y1="240" x2="1180" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8e0d5" />
+      <stop offset="1" stop-color="#c3ac8a" />
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="520" y1="420" x2="760" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d9c6a3" />
+      <stop offset="1" stop-color="#b38952" />
+    </linearGradient>
+  </defs>
+</svg>
+
+

@@ -1,0 +1,51 @@
+# ===== Bí mật & môi trường =====
+.env
+.env.*
+!.env.example
+
+# ===== Python (Django) =====
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# ===== Node (React/Vite) =====
+node_modules/
+.vite/
+*.tsbuildinfo
+
+# ===== IDE / Hệ điều hành =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== File tạm / backup =====
+*.bak
+*.beforefix
+*~
+tempCodeRunnerFile.py
+_tmp*
+
+# ===== Tài liệu cá nhân (KHÔNG đưa lên GitHub) =====
+docs/
+
+# ===== Slide bảo vệ đồ án (KHÔNG đưa lên GitHub) =====
+# Thư mục này chứa file pptx dung lượng lớn + script tạm, không thuộc mã nguồn.
+slide-baove/
+
+# ===== Dữ liệu runtime =====
+uploads/
+logs/
+*.log
+
+# ===== Backup tạm (bản khôi phục 10-08) =====
+backup-hom-nay-2026-10-08/

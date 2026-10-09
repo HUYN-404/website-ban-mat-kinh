@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply font-sans text-charcoal bg-white antialiased;
+}
+
+::selection {
+  @apply bg-gold-500 text-white;
+}
+
+.hero-swiper {
+  overflow: hidden !important;
+  border-radius: 36px;
+  position: relative;
+}
+
+.hero-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.hero-swiper .hero-swiper-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  opacity: 1;
+  margin: 0 !important;
+  flex: 0 0 auto;
+  transition: all 0.35s ease;
+}
+
+.hero-swiper .hero-swiper-bullet-active {
+  width: 28px;
+  background: #b98b3b;
+}
+
+.hero-swiper-pagination {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transform: translateX(-50%);
+}
+
+/* Toast animations */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+/* Image Viewer styles */
+.image-viewer-thumbs .swiper-slide {
+  width: auto !important;
+}
+
+.image-viewer-thumbs .swiper-slide[data-active="true"] {
+  border-color: white !important;
+  opacity: 1 !important;
+}
+
+/* Tôn trọng người dùng đã tắt hiệu ứng chuyển động (bệnh về tiền đình, máy yếu...) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus bàn phím: vòng gold rõ ràng, đồng bộ toàn site (outline tự bo theo border-radius) */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #b98b3b;
+  outline-offset: 2px;
+}
+
+/* Badge giỏ hàng "nhảy" khi vừa thêm sản phẩm */
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  55% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-badge-pop {
+  animation: badge-pop 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Nút tim "nảy" khi vừa được thích */
+@keyframes heart-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heart-pop {
+  animation: heart-pop 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Vệt sáng chạy ngang qua khung xương (skeleton) khi đang tải */
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-sweep {
+  animation: shimmer-sweep 1.4s linear infinite;
+}
+

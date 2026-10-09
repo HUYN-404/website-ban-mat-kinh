@@ -1,0 +1,14 @@
+# Ép dùng LF cho file text — tránh xung đột xuống dòng giữa Windows/Linux
+* text=auto eol=lf
+
+# File nhị phân (git không diff/merge theo dòng)
+*.mwb binary
+*.avif binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
